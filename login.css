@@ -1,0 +1,13 @@
+#form{
+    height: 300px;
+    background-color: aquamarine;
+    width: 200px;
+    margin: auto;
+ }
+ #form>form{
+     margin: 11px;
+     justify-content: center;
+ }
+ #form>form>input{
+     margin-top: 5px;
+ }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sort()">sort LTH</button>
+    <button onclick="filter()">filter by </button>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+    let getdata= async()=>{
+        let res= await fetch("http://127.0.0.1:3000/api/products")
+        let data= await res.json()
+        console.log(data)
+        append(data)
+    }
+    getdata()
+
+    let sort= async()=>{
+        let res= await fetch("http://127.0.0.1:3000/api/products/?_sort=price&_order=asc")
+        let data= await res.json()
+        // console.log(data)
+        
+    }
+    
+let filter= async()=>{
+        let res= await fetch("http://127.0.0.1:3000/api/products/?rating_gte=4.3")
+        let data= await res.json()
+        console.log(data)
+    }
+
+let append=(data)=>{
+let container=document.getElementById("container")
+
+data.map(function(el){
+    let box=document.createElement("div")
+
+
+let photo=document.createElement("img")
+photo.setAttribute("src",el.image)
+
+let name=document.createElement("p")
+name.innerText=el.title
+
+box.append(photo,name)
+container.append(box)
+})
+}
+
+
+// productData.map(function(element){
+
+// let box=document.createElement("div")
+
+
+// let photo=document.createElement("img")
+// photo.setAttribute("src",element.img)
+
+// let brand=document.createElement("p")
+// brand.innerText=element.brand
+
+// let nam=document.createElement("p")
+// nam.innerText=element.name
+
+// let pri=document.createElement("p")
+// pri.innerText=element.price
+
+// let catagory=document.createElement("p")
+// catagory.innerText=element.catagory
+
+// let buton=document.createElement("button")
+// buton.innerText="Add to cart"
+
+// box.append(photo,nam,pri,catagory,buton)
+
+// document.querySelector("#products").appendChild(box)
+
+// })
+</script>
